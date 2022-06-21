@@ -1,14 +1,6 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useState, useRef } from 'react';
-import {
-  Points,
-  PointMaterial,
-  Sparkles,
-  OrbitControls,
-  SpotLight,
-  Text3D,
-  Sphere
-} from '@react-three/drei';
+import { useState, useRef, Suspense } from 'react';
+import { Points, PointMaterial, Sparkles, SpotLight, Text3D, Sphere } from '@react-three/drei';
 import * as THREE from 'three';
 import * as random from 'maath/random';
 
@@ -96,12 +88,15 @@ const Spaceship = () => {
 const SceneContent = () => {
   return (
     <>
+      <Sparkles count={500} scale={2} size={1} speed={0.4} position={[0, -1, 0.5]} />
+      {/* planet */}
       <mesh position={[0, -3, 0]} receiveShadow>
         <sphereBufferGeometry attach="geometry" args={[3, 32, 64]} />
         <meshStandardMaterial attach="material" color="#679138" />
       </mesh>
       <Stars />
       <Spaceship />
+      {/* text */}
       <Text3D
         castShadow
         receiveShadow
@@ -112,6 +107,7 @@ const SceneContent = () => {
         <meshStandardMaterial color="#c2c2c2" />
       </Text3D>
       <Trees position={[0, -3, 0]} />
+      {/* text ground */}
       <mesh position={[0, -0.6, 0.6]}>
         <boxBufferGeometry attach="geometry" args={[2]} />
         <meshStandardMaterial color="#c2c2c2" />
@@ -124,9 +120,9 @@ export const Scene = () => {
   return (
     <Canvas shadows style={{ position: 'absolute', inset: 0 }} camera={{ position: [0, 0, 6] }}>
       <ambientLight intensity={0.1} color="#c2c2c2" />
-      {/* <pointLight position={[0, 3, 2]} intensity={0.2} /> */}
-      <SceneContent />
-      <Sparkles count={500} scale={2} size={1} speed={0.4} position={[0, -1, 0.5]} />
+      <Suspense fallback={null}>
+        <SceneContent />
+      </Suspense>
     </Canvas>
   );
 };
