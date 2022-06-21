@@ -5,12 +5,10 @@ export const Message = () => {
     <aside className="message-wrapper">
       <small>Creado en </small>
       <i>Nerdearla 101 2022</i>
-      <cite>
+      <div>
         <small>por</small>
-        <author>
-          <a href="https://twitter.com/emalorenzo_">@emaLorenzo_</a>
-        </author>
-      </cite>
+        <a href="https://twitter.com/emalorenzo_">@emaLorenzo_</a>
+      </div>
       <a className="repo-link" href="https://github.com/emaLorenzo/nerdearla-intro-r3f">
         <svg
           xmlns="http://www.w3.org/2000/svg"
