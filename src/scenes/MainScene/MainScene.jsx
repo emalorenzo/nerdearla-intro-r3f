@@ -116,7 +116,7 @@ const SceneContent = () => {
   );
 };
 
-export const Scene = () => {
+export const MainScene = () => {
   return (
     <Canvas shadows style={{ position: 'absolute', inset: 0 }} camera={{ position: [0, 0, 6] }}>
       <ambientLight intensity={0.1} color="#c2c2c2" />
